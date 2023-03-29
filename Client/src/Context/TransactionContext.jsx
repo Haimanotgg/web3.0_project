@@ -19,6 +19,9 @@ const getEthereumContract = () => {
 }
 
 export const TransactionProvider =({children})=>{
+
+    const [connectedAccount, setfirst] = useState(second)
+
      const checkIfWalletIsConnected = async () =>{
         if(!ethereum) return alert ("Please install metamask");
 
@@ -27,10 +30,26 @@ export const TransactionProvider =({children})=>{
         console.log(accounts);
      }
 
+    const connectWallet = async() =>  {
+
+        try {
+
+            if(!ethereum) return alert ("Please install metamask");
+
+            const accounts = await ethereum.request( {method: 'eth_requestAccounts'});
+
+            setCurrentAccount(accounts[0]);
+            
+        } catch (error) {
+            
+        }
+
+    }
+
      useEffect(() => {
        checkIfWalletIsConnected();
      }, []);
-     
+   
 
     return (
         <TransactionContext.Provider value ={{children}}>
