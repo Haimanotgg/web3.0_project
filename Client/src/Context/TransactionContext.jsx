@@ -39,8 +39,7 @@ export const TransactionProvider =({children})=>{
 
             const accounts = await ethereum.request( {method: 'eth_requestAccounts'});
 
-            setCurrentAccount(accounts[0]);
-            
+            setCurrentAccount(accounts[0]);     
         } catch (error) {
             console.log(error);
 
@@ -56,7 +55,7 @@ export const TransactionProvider =({children})=>{
 
     return (
         <TransactionContext.Provider value ={{connectWallet}}>
-            {connectWallet}
+            {children}
         </TransactionContext.Provider>)
 
   };
