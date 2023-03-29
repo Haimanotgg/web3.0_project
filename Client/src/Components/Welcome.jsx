@@ -19,15 +19,16 @@ const Input = ({ placeholder, name, type, value, handleChange }) => (
     />
 );
 
-const handleSubmit = () =>{
-    
-}
-
-const connectWallet =() =>{
-
-}
 
 const Welcome = () => {
+
+    const { connectWallet } = useContext(TransactionContext);
+
+    const handleSubmit = () => {
+    
+    }
+
+
     return (
         <div className="flex w-full justify-center items-center">
             <div className="flex mf:flex-row flex-col items-start justify-between md:p-20 py-12 px-4">
