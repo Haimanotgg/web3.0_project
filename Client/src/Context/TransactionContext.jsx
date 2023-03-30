@@ -20,16 +20,30 @@ const getEthereumContract = () => {
 
 export const TransactionProvider =({children})=>{
 
-    const [connectedAccount, setconnectedAccount] = useState()
+    const [currentAccount, setCurrentAccount] = useState()
 
 
-     const checkIfWalletIsConnected = async () =>{
+     const checkIfWalletIsConnected = async () => {
+    try {
         if(!ethereum) return alert ("Please install metamask");
 
         const accounts = await ethereum.request( {method: 'eth_accounts'});
 
-        console.log(accounts);
-     }
+        if(accounts.length) {
+            setCurrentAccount(accounts[0]);
+        
+        // getAllTransactions(0;)
+        }
+        else {
+            console.log ('No accounts found');
+        }  
+    } catch (error) {
+        console.log(error);
+            const errorMessage = error.message || "Could not connect to wallet. Please try again later.";
+            alert(errorMessage);
+        
+    }   
+        }
 
     const connectWallet = async() =>  {
 
@@ -41,9 +55,14 @@ export const TransactionProvider =({children})=>{
 
             setCurrentAccount(accounts[0]);     
         } catch (error) {
-            console.log(error);
+            // console.log(error);
 
-            throw new Error("No Ethereum object.");
+            // throw new Error("No Ethereum object.");
+
+            console.log(error);
+            const errorMessage = error.message || "Could not connect to wallet. Please try again later.";
+            alert(errorMessage);
+
         }
 
     }
@@ -54,8 +73,7 @@ export const TransactionProvider =({children})=>{
    
 
     return (
-        <TransactionContext.Provider value ={{connectWallet}}>
+        <TransactionContext.Provider value ={{connectWallet, currentAccount}}>
             {children}
-        </TransactionContext.Provider>)
-
-  };
+        </TransactionContext.Provider>);
+}
