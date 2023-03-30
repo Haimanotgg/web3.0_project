@@ -20,7 +20,12 @@ const getEthereumContract = () => {
 
 export const TransactionProvider =({children})=>{
 
-    const [currentAccount, setCurrentAccount] = useState()
+    const [currentAccount, setCurrentAccount] = useState('');
+    const [formData, setFormData] = useState ({addressTo: '', amount: '', keywod: '', message: ''});
+
+    const handleChange = (e, name) =>{
+        setFormData((prevState) => ({ ...prevState, [name]: e.target.value }));
+    }
 
 
      const checkIfWalletIsConnected = async () => {
@@ -65,6 +70,18 @@ export const TransactionProvider =({children})=>{
 
         }
 
+    const sendTransaction = async () => {
+        try {
+            if(!ethereum) return alert ("Please install metamask");
+
+            
+        } catch (error) {
+            console.log(error);
+            const errorMessage = error.message || "Could not connect to wallet. Please try again later.";
+            alert(errorMessage);
+        }
+    }
+
     }
 
      useEffect(() => {
@@ -73,7 +90,7 @@ export const TransactionProvider =({children})=>{
    
 
     return (
-        <TransactionContext.Provider value ={{connectWallet, currentAccount}}>
+        <TransactionContext.Provider value ={{connectWallet, currentAccount, formData, setFormData, handleChange}}>
             {children}
         </TransactionContext.Provider>);
 }
