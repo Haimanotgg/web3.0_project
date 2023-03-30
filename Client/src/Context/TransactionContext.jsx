@@ -70,11 +70,15 @@ export const TransactionProvider =({children})=>{
 
         }
 
+    }
+
     const sendTransaction = async () => {
         try {
             if(!ethereum) return alert ("Please install metamask");
 
-            
+            const { addressTo, amount, keyword, message} = formData.value;
+            getEthereumContract();
+
         } catch (error) {
             console.log(error);
             const errorMessage = error.message || "Could not connect to wallet. Please try again later.";
@@ -82,7 +86,7 @@ export const TransactionProvider =({children})=>{
         }
     }
 
-    }
+    
 
      useEffect(() => {
        checkIfWalletIsConnected();
@@ -90,7 +94,7 @@ export const TransactionProvider =({children})=>{
    
 
     return (
-        <TransactionContext.Provider value ={{connectWallet, currentAccount, formData, setFormData, handleChange}}>
+        <TransactionContext.Provider value ={{connectWallet, currentAccount, formData, setFormData, handleChange, sendTransaction}}>
             {children}
         </TransactionContext.Provider>);
 }
