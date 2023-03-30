@@ -25,7 +25,7 @@ const Welcome = () => {
     const { connectWallet, currentAccount, formData, sendTransaction, handleChange} = useContext(TransactionContext);
 
     const handleSubmit = (e) => {
-        const { addressTo, amount, keyword, message} = formData.value;
+        const { addressTo, amount, keyword, message} = formData;
 
         e.preventDefault();
 
