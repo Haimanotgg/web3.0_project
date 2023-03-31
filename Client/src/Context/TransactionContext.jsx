@@ -3,15 +3,38 @@ import {ethers} from "ethers";
 
 import { contractABI, contractAddress } from '../utils/Constants';
 
+
 export const TransactionContext = React.createContext();
 
-const { ethereum } = window;
+const {ethereum}  = window;
+
+// const getEthereumContract = () => {
+    
+//     // if (typeof ethereum !== 'undefined') {
+//     //     // const provider = new ethers.providers.Web3Provider(ethereum);
+//     //     // Your code for provider and signer
+//     //     const provider = new ethers.providers.Web3Provider(window.ethereum);
+//     //     const signer = provider.getSigner();
+//     //   } else {
+//     //     console.log('Web3Provider not available. Please install and enable a web3-enabled wallet such as MetaMask.');
+//     //   }
+//     const provider = new ethers.providers.Web3Provider(window.ethereum);
+//     const signer = provider.getSigner();
+//     const transactionsContract = new ethers.Contract(contractAddress, contractABI, signer);
 
 const getEthereumContract = () => {
-    const provider = new ethers.providers.Web3Provider(ethereum || undefined);
-    const signer = provider.getSigner();
-    const transactionsContract = new ethers.Contract(contractAddress, contractABI, signer);
+    try {
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const signer = provider.getSigner();
+      const transactionsContract = new ethers.Contract(contractAddress, contractABI, signer);
+      return transactionsContract;
+    } catch (error) {
+      console.error(error);
+      alert('Error: Please install and enable a web3-enabled wallet such as MetaMask to use this functionality.');
+      return null;
+    }
 
+   
     console.log({
         signer,
         provider,
@@ -82,9 +105,9 @@ export const TransactionProvider =({children})=>{
         } catch (error) {
             console.log(error);
             const errorMessage = error.message || "Could not connect to wallet. Please try again later.";
-            alert(errorMessage);
+            alert(errorMessage); 
         }
-    }
+    };
 
     
 
