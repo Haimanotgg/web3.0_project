@@ -15,16 +15,21 @@ const {ethereum}  = window;
 //     const transactionsContract = new ethers.Contract(contractAddress, contractABI, signer);
 
 const getEthereumContract = () => {
-    try {
-      const provider = new ethers.providers.Web3Provider(window.ethereum);
+
+    const provider = new ethers.providers.Web3Provider(ethereum);
       const signer = provider.getSigner();
       const transactionsContract = new ethers.Contract(contractAddress, contractABI, signer);
       return transactionsContract;
-    } catch (error) {
-      console.error(error);
-      alert('Error: Please install and enable a web3-enabled wallet such as MetaMask to use this functionality.');
-      return null;
-    }
+    // try {
+    //   const provider = new ethers.providers.Web3Provider(ethereum);
+    //   const signer = provider.getSigner();
+    //   const transactionsContract = new ethers.Contract(contractAddress, contractABI, signer);
+    //   return transactionsContract;
+    // } catch (error) {
+    //   console.error(error);
+    //   alert('Error: Please install and enable a web3-enabled wallet such as MetaMask to use this functionality.');
+    //   return null;
+    // }
 
    
     console.log({
