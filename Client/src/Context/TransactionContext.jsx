@@ -8,16 +8,8 @@ export const TransactionContext = React.createContext();
 
 const {ethereum}  = window;
 
-// const getEthereumContract = () => {
-    
-//     // if (typeof ethereum !== 'undefined') {
-//     //     // const provider = new ethers.providers.Web3Provider(ethereum);
-//     //     // Your code for provider and signer
-//     //     const provider = new ethers.providers.Web3Provider(window.ethereum);
-//     //     const signer = provider.getSigner();
-//     //   } else {
-//     //     console.log('Web3Provider not available. Please install and enable a web3-enabled wallet such as MetaMask.');
-//     //   }
+// const provider = new ethers.providers.Web3Provider(web3.currentProvider);
+
 //     const provider = new ethers.providers.Web3Provider(window.ethereum);
 //     const signer = provider.getSigner();
 //     const transactionsContract = new ethers.Contract(contractAddress, contractABI, signer);
