@@ -1,12 +1,12 @@
 import React, {useEffect, useState} from "react";
-import {ethers} from "ethers";
+import { ethers } from "ethers";
 
 import { contractABI, contractAddress } from '../utils/Constants';
 
 
 export const TransactionContext = React.createContext();
 
-const {ethereum}  = window;
+
 
 // const provider = new ethers.providers.Web3Provider(web3.currentProvider);
 
@@ -14,12 +14,39 @@ const {ethereum}  = window;
 //     const signer = provider.getSigner();
 //     const transactionsContract = new ethers.Contract(contractAddress, contractABI, signer);
 
+
+const {ethereum}  = window;
 const getEthereumContract = () => {
 
-    const provider = new ethers.providers.Web3Provider(ethereum);
-      const signer = provider.getSigner();
-      const transactionsContract = new ethers.Contract(contractAddress, contractABI, signer);
-      return transactionsContract;
+
+    const {ethereum}  = window;
+
+const getEthereumContract = () => {
+  if (typeof ethereum === 'undefined' || !ethereum) {
+    console.error('Please install and enable MetaMask to access this feature!');
+    return;
+  }
+
+  const provider = new ethers.providers.Web3Provider(ethereum);
+  const signer = provider.getSigner();
+  const transactionsContract = new ethers.Contract(contractAddress, contractABI, signer);
+
+  console.log({
+    signer,
+    provider,
+    transactionsContract
+  });
+};
+
+// const provider = new ethers.providers.Web3Provider(ethereum);
+// const signer = provider.getSigner();
+// const transactionsContract = new ethers.Contract(contractAddress, contractABI, signer);
+//  console.log({
+//         signer,
+//         provider,
+//         transactionsContract})
+}
+
     // try {
     //   const provider = new ethers.providers.Web3Provider(ethereum);
     //   const signer = provider.getSigner();
@@ -31,12 +58,6 @@ const getEthereumContract = () => {
     //   return null;
     // }
 
-   
-    console.log({
-        signer,
-        provider,
-        transactionsContract})
-}
 
 export const TransactionProvider =({children})=>{
 
@@ -101,8 +122,9 @@ export const TransactionProvider =({children})=>{
 
         } catch (error) {
             console.log(error);
-            const errorMessage = error.message || "Could not connect to wallet. Please try again later.";
-            alert(errorMessage); 
+            throw new Error ("No obects found");
+            // const errorMessage = error.message || "Could not connect to wallet. Please try again later.";
+            // alert(errorMessage); 
         }
     };
 
