@@ -3,7 +3,7 @@ import { TransactionContext } from '../Context/TransactionContext';
 // import { DummyData } from '../Context/TransactionContext';
 
 const Transactions = () => {
-    const { cur}
+    // te
     return (
        <div className='flex w-full justify-center items-center 2xl:px-20 gradient-bg-transactions '>
             <div className='flex flex-col md:p-12 py-12 px-4'>
@@ -14,4 +14,4 @@ const Transactions = () => {
     );
 }
 
-export default Transactions;S
+export default Transactions;
