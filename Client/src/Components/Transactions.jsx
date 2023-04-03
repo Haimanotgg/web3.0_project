@@ -1,6 +1,6 @@
 import React, {useContext} from 'react';
 import { TransactionContext } from '../Context/TransactionContext';
-// import { DummyData } from '../Context/TransactionContext';
+// import { dummyData } from '../Context/TransactionContext';
 
 const Transactions = () => {
     // te
