@@ -4,6 +4,9 @@ import { TransactionContext } from '../Context/TransactionContext';
 import  dummyData  from '../utils/dummyData'; 
 import { shortenAddres } from '../utils/shortenAddress'
 
+const TransactionCard = ({addressTo, addressaFrom , timestamp, message ,keyword, amount, url}) = >{
+
+}
 const Transactions = () => {
     const { currentAccount } = useContext (TransactionContext);
     return (
@@ -17,7 +20,7 @@ const Transactions = () => {
 
                 <div className='flex flex-wrap justify-center items-center mt-10'>
                     {dummyData.reverse().map((transaction, i) =>
-                    ( <TransactionCard key />)
+                    ( <TransactionCard key= {i} {...transaction} />)
                     )}
                 </div>
 
