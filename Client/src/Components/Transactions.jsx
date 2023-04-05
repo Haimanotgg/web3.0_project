@@ -2,10 +2,25 @@ import { Transaction } from 'ethers';
 import React, {useContext} from 'react';
 import { TransactionContext } from '../Context/TransactionContext';
 import  dummyData  from '../utils/dummyData'; 
-import { shortenAddres } from '../utils/shortenAddress'
+import { shortenAddress } from '../utils/shortenAddress'
 
-const TransactionCard = ({addressTo, addressaFrom , timestamp, message ,keyword, amount, url}) = >{
+const TransactionCard = ({ addressTo, addressFrom , timestamp, message, keyword, amount, url }) => {
+    return <div className="bg-[#181918] m-4 flex flex-1
+        2xl:min-w-[450px]
+        2xl:max-w-[500px]
+        sm:min-w-[270px]
+        sm:max-w-[300px]
+        felx-col p-3 rounded-md hover: shadow-2xl
+    ">
+        <div className='flex flex-col items-center w-full md-3'>
+            <div className='display-flex justify-start w-full mb-6 p-2'>
+                <a href={`https://sepolia.etherscan.io/${addressFrom}`} target= "_blank" rel= "noopener noreferrer">
+                    <p className='text-white text-base '>From : {shortenAddress(addressFrom)}</p>
+                </a>
+            </div>
+        </div>
 
+    </div>;
 }
 const Transactions = () => {
     const { currentAccount } = useContext (TransactionContext);
