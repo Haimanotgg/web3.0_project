@@ -91,6 +91,14 @@ export const TransactionProvider =({children})=>{
     }   
         }
 
+    // const checkIfTransactionsExist = async() =>{
+    //     try {
+    //         const transactionsContract =getEthereumContract();
+    //     } catch (error) {
+            
+    //     }
+    // }
+
     const connectWallet = async() =>  {
 
         try {

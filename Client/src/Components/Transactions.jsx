@@ -30,7 +30,7 @@ const TransactionCard = ({ addressTo, addressFrom , timestamp, message, keyword,
                 }
 
                 <div className='bg-black p-3 px-5 w-max rounded-3xl'>
-                    <p className='text-[#37c7da]' font-bold>{timestamp}</p>
+                    <p className='text-[#37c7da] font-bold'>{timestamp}</p>
                 </div>
 
             </div>
