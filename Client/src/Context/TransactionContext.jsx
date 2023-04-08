@@ -8,18 +8,11 @@ export const TransactionContext = React.createContext();
 
 
 
-// const provider = new ethers.providers.Web3Provider(web3.currentProvider);
-
-//     const provider = new ethers.providers.Web3Provider(window.ethereum);
-//     const signer = provider.getSigner();
-//     const transactionsContract = new ethers.Contract(contractAddress, contractABI, signer);
-
-
 const {ethereum}  = window;
-const getEthereumContract = () => {
+// const getEthereumContract = () => {
 
 
-    const {ethereum}  = window;
+// const {ethereum}  = window;
 
 const getEthereumContract = () => {
   if (typeof ethereum === 'undefined' || !ethereum) {
@@ -45,7 +38,6 @@ const getEthereumContract = () => {
 //         signer,
 //         provider,
 //         transactionsContract})
-}
 
     // try {
     //   const provider = new ethers.providers.Web3Provider(ethereum);
@@ -69,7 +61,7 @@ export const TransactionProvider =({children})=>{
     }
 
 
-     const checkIfWalletIsConnected = async () => {
+    const checkIfWalletIsConnected = async () => {
     try {
         if(!ethereum) return alert ("Please install metamask");
 
@@ -129,10 +121,10 @@ export const TransactionProvider =({children})=>{
             getEthereumContract();
 
         } catch (error) {
-            console.log(error);
-            throw new Error ("No obects found");
-            // const errorMessage = error.message || "Could not connect to wallet. Please try again later.";
-            // alert(errorMessage); 
+            // console.log(error);
+            // throw new Error ("No obects found");
+            const errorMessage = error.message || "Could not connect to wallet. Please try again later.";
+            alert(errorMessage); 
         }
     };
 
